@@ -14,22 +14,21 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")); //SQL oilasidagi tillarni ishlatsa bo'ladi 
 });
 
 builder.Services.AddAuthentication();
-builder.Services.AddIdentityApiEndpoints<IdentityUser>()
-    .AddEntityFrameworkStores<AppDbContext>();
+builder.Services.AddIdentityApiEndpoints<IdentityUser>().AddEntityFrameworkStores<AppDbContext>(); // Microsoft identityni elonqilsh uchun 
 builder.Services.AddSwaggerGen(options => 
 {
     options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
-        Name = "Authorization",
+        Name = "Authorization", // Boshqa nom qo'yilsa 401 qaytaradi
         Type=SecuritySchemeType.ApiKey,
     });
     options.OperationFilter<SecurityRequirementsOperationFilter>();
-});
+}); //Swaggerda Authentication uchun 
 
 
 
@@ -43,7 +42,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.MapIdentityApi<IdentityUser>();
+app.MapIdentityApi<IdentityUser>(); // Microsoft Identity controllerlarini API chiqarish uchun
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

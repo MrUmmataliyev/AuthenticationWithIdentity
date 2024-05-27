@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AuthenticationWithIdentity.Controllers
 {
     [ApiController]
-    [Authorize]
+    [Authorize] //loginsiz kirishni blocklash uchun
     [Route("[controller]")]
     
     public class WeatherForecastController : ControllerBase

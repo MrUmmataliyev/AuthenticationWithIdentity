@@ -8,7 +8,7 @@ namespace AuthenticationWithIdentity
         public AppDbContext(DbContextOptions<AppDbContext> options) 
             : base(options)
         {
-            Database.Migrate();
+            Database.Migrate(); //Databasani Update qilish uchun
         }
     }
 }
