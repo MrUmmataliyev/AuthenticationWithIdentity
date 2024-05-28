@@ -1,4 +1,5 @@
 using AuthenticationWithIdentity;
+using AuthenticationWithIdentity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -18,7 +19,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 
 builder.Services.AddAuthentication();
-builder.Services.AddIdentityApiEndpoints<IdentityUser>().AddEntityFrameworkStores<AppDbContext>(); // Microsoft identityni elonqilsh uchun 
+builder.Services.AddIdentityApiEndpoints<AppUser>().AddEntityFrameworkStores<AppDbContext>(); // Microsoft identityni elonqilsh uchun //was IdentityUser
 builder.Services.AddSwaggerGen(options => 
 {
     options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
@@ -42,7 +43,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.MapIdentityApi<IdentityUser>(); // Microsoft Identity controllerlarini API chiqarish uchun
+
+app.MapIdentityApi<AppUser>(); // Microsoft Identity controllerlarini API chiqarish uchun   //was IdentityUser
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

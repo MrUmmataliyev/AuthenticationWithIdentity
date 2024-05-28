@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using AuthenticationWithIdentity.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace AuthenticationWithIdentity
 {
-    public class AppDbContext : IdentityDbContext   
+    public class AppDbContext : IdentityDbContext<AppUser>   //was IdentityUser
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) 
             : base(options)
